@@ -1,0 +1,22 @@
+<div *ngIf="lat && lng">
+    <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)" [zoom]="5">
+        <agm-marker [latitude]="lat" [longitude]="lng">
+            <agm-info-window>
+                <!-- <h3> <strong>Areeb</strong> </h3> -->
+                <p> <b> You are here! </b> </p>
+            </agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let marker of markers" 
+            [latitude]="marker.location[0]" 
+            [longitude]="marker.location[1]" 
+            [iconUrl]="'https://img.icons8.com/ios-filled/50/000000/national-park.png'"
+            >
+            <!-- [iconUrl]="'https://cdn1.iconfinder.com/data/icons/designer-s-tools-1/512/Coffee-64.png'" -->
+           
+                <agm-info-window>
+                    <h3><strong>Location Details</strong></h3>
+                    <p>You are <b> {{marker.distance}} kilometers </b> from your location</p>
+                </agm-info-window>
+        </agm-marker>
+    </agm-map>
+</div>
